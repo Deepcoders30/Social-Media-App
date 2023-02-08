@@ -4,6 +4,7 @@ dotenv.config("./.env");
 const DBconnect=require("./DBconnect.js");
 const authRouter=require("./routers/authRouter.js");
 const postsRouter=require("./routers/postsRouter.js");
+const userRouter=require("./routers/userRouter.js");
 const morgon=require("morgan");
 const cookieParser=require("cookie-parser");
 const cors=require("cors");
@@ -23,6 +24,7 @@ app.use(cors({
 
 app.use("/auth", authRouter);
 app.use("/posts", postsRouter);
+app.use("/user", userRouter);        
 app.get("/", (req, res)=>{
     res.status(200).send("OK from Server");
 });
