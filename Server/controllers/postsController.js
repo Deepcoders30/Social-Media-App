@@ -34,7 +34,7 @@ const createPostController= async (req, res)=>{
 
 
 const likeAndunlikePost = async (req, res)=>{
-
+    console.log(req._id)
     try{
     const {postId}=req.body;
     const currentUserId=req._id;
