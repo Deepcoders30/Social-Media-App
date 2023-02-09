@@ -1,5 +1,6 @@
 const User=require("../models/Users.js");
-const {success, error}=require("../utils/responseWrapper.js")
+const Post=require("../models/Posts.js");
+const {success, error}=require("../utils/responseWrapper.js");
 
 
 
@@ -12,6 +13,10 @@ try{
   const curUser=await User.findById(currentUserId);
   if(!userToFollow){
         return res.send(error(484, "User to Follow not found"));
+  }
+
+  if(currentUserId===userIdToFollow){
+    return res.send(error(409, "User cannot follow themselves"));
   }
 
   if(curUser.followings.includes(userIdToFollow)){//Already Followed
@@ -38,8 +43,21 @@ try{
 }catch(e){
   res.send(error(500, e.message));
 }
-  
-  
+   
 }
 
-module.exports={followOrUnfollowUser};
+
+const getPostsOfFollowing = async (req, res)=>{
+    const currentUserId=req._id;
+
+    const curUser=await User.findById(currentUserId);
+    const posts=await Post.find({
+        'owner':{
+           '$in':curUser.followings
+        }
+    })
+
+    return res.send(success(200, posts))
+}
+
+module.exports={followOrUnfollowUser, getPostsOfFollowing};
