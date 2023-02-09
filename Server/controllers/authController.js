@@ -112,6 +112,14 @@ const refreshAccessTokenController=async (req, res)=>{
     }
 }
 
+const logoutController = async (req, res)=>{
+     try{
+       res.clearCookie('jwt', )
+     }catch(e){
+        return res.send(error(500, e.message));
+     }
+}
 
-module.exports={signupController, loginController, refreshAccessTokenController};
+
+module.exports={signupController, loginController, refreshAccessTokenController, logoutController};
 
