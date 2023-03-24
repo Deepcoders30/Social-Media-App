@@ -14,7 +14,7 @@ axiosClient.interceptors.request.use(
        
         request.headers['Authorization']=`Bearer ${accessToken}`;
 
-        return request
+        return request;
     }
 );
 
@@ -30,7 +30,7 @@ axiosClient.interceptors.response.use(
         const error=data.error;
         
         //When refresh token expires, send user to login page
-        if(statusCode===401 && originalRequest.url===`${REACT_APP_SERVER_BASE_URL}/auth/refresh`){
+        if(statusCode===401 && originalRequest.url===`${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`){
                removeItem(KEY_ACCESS_TOKEN);
                window.location.replace('/login', '_self');
 
@@ -46,7 +46,7 @@ axiosClient.interceptors.response.use(
                 .create({
                     withCredentials: true,
                 })
-                .get(`${REACT_APP_SERVER_BASE_URL}/auth/refresh`);
+                .get(`${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`);
             
             
             if(response.status==="Ok"){
@@ -54,9 +54,13 @@ axiosClient.interceptors.response.use(
                 originalRequest.headers['Authorization']=`Bearer ${response.result.accessToken}`;
 
                 return axios(originalRequest);
+            }else{
+               removeItem(KEY_ACCESS_TOKEN);
+               window.location.replace('/login', '_self');
+               return Promise.reject(error);
             }
 
-            return Promise.reject(error);
+            
         }
     }
 );

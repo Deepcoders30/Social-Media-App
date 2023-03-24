@@ -9,5 +9,5 @@ export function getItem(key){
 }
 
 export function removeItem(key){
-    return localStorage.removeItem()
+    return localStorage.removeItem(key)
 }
