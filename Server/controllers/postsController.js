@@ -1,22 +1,32 @@
 const {error, success}=require("../utils/responseWrapper");
 const Post=require("../models/Posts.js");
-const User=require("../models/Users.js")
+const User=require("../models/Users.js");
+const cloudinary=require('cloudinary').v2;
 
 
 const createPostController= async (req, res)=>{
 
     try{
-        const {caption}=req.body;
+        const {caption, postImg}=req.body;
         
-        if(!caption){
-            return res.send(error(400, "Caption is required"))
+        if(!caption || !postImg){
+            return res.send(error(400, "Caption and Post Image is required"))
         }
+
+        const cloudImg=await cloudinary.uploader.upload(postImg, {
+            folder: 'postImg'
+           });
+
 
         const owner=req._id;
     
         const post=await Post.create({
             caption,
-            owner
+            owner,
+            image: {
+                publicId: cloudImg.public_id,
+                url: cloudImg.url
+            }
         });
 
         const user=await User.findById(req._id);
@@ -83,7 +93,7 @@ try{
         post.caption=caption;
     }
 
-    await post.asve();
+    await post.save();
 
     return res.semd(success(200, post));
 }catch(e){

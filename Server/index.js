@@ -8,12 +8,20 @@ const userRouter=require("./routers/userRouter.js");
 const morgon=require("morgan");
 const cookieParser=require("cookie-parser");
 const cors=require("cors");
+const cloudinary = require('cloudinary').v2;
 
+
+// Configuration 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 const app=express();
 
 //Middlewares
-app.use(express.json());
+app.use(express.json({limit: '10mb'}));
 app.use(morgon('common'));   
 app.use(cookieParser());
 app.use(cors({

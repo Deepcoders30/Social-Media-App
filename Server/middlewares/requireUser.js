@@ -1,5 +1,6 @@
 const jwt=require("jsonwebtoken");
-const {error, success}=require("../utils/responseWrapper")
+const {error, success}=require("../utils/responseWrapper");
+const User=require("../models/Users.js");
 
 
 module.exports=async (req, res, next)=>{

@@ -1,6 +1,8 @@
 const User=require("../models/Users.js");
 const Post=require("../models/Posts.js");
 const {success, error}=require("../utils/responseWrapper.js");
+const { mapPostOutput } = require("../utils/Utils.js");
+const cloudinary = require('cloudinary').v2; 
 
 
 
@@ -72,7 +74,7 @@ try{
   
   const allUserPosts = await Post.find({
     owner: currentUserId
-  }).populate("L  ikes");
+  }).populate("Likes");
 
   res.send(success(200, {allUserPosts}))
 }catch(e){
@@ -143,9 +145,67 @@ try{
 }catch(e){
   res.send(error())
 }
-
-
 }
 
+const getMyInfo = async (req, res)=>{
+  try {
+    const user=await User.findById(req._id);
+    return res.send(success(200, {user}))
+  } catch (e) {
+    return res.send(error(500, e.message));
+  }
+}
 
-module.exports={followOrUnfollowUser, getPostsOfFollowing, getMyPosts, getUserPosts, deleteMyProfile};
+const updateUserProfile = async (req, res)=>{
+  try {
+    const {name, bio, userImg}=req.body;
+
+    const user=await User.findById(req._id);
+
+    if(name){
+      user.name=name;
+    }
+    if(bio){
+      user.bio=bio;
+    }
+    if(userImg){
+      const cloudImg=await cloudinary.uploader.upload(userImg, {
+        folder: 'Profile-Image'
+      })
+      user.avatar={
+        url: cloudImg.secure_url,
+        publicId: cloudImg.public_id 
+      }
+    }
+    await user.save();
+    return res.send(success(200, {user}));
+  } 
+  catch (e) {
+    return res.send(error(500, e.message));
+  }
+}
+
+const getUserProfile = async (req, res)=>{
+  try{
+    const userId=req.body.userId;
+    
+    const user=await User.findById(userId).populate({
+      path: "posts",
+      populate:{
+         path: 'owner'
+      }
+  });
+  
+
+  const fullPost=user.posts;
+  const posts=fullPost.map(item=>mapPostOutput(item, req._id)).reverse();
+
+  return res.send(success(200, {...user._doc, posts}))
+  
+  }
+  catch(e){
+    console.log(e);
+  }
+}
+
+module.exports={followOrUnfollowUser, getPostsOfFollowing, getMyPosts, getUserPosts, deleteMyProfile, getMyInfo, updateUserProfile, getUserProfile};
