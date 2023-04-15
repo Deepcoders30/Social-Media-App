@@ -20,6 +20,8 @@ const postSchema=mongoose.Schema({
             ref: 'user'
         }
     ]
+},{
+    timestamps: true
 });
 
 
