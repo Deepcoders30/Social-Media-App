@@ -13,7 +13,7 @@ function Signup() {
   async function handleSubmit(event){
       event.preventDefault();
       try{
-      const result=await axiosClient.post("/auth/signup", {
+      await axiosClient.post("/auth/signup", {
         name,
         email,
         password
