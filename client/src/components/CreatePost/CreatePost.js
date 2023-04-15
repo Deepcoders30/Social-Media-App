@@ -3,14 +3,19 @@ import "./createpost.scss";
 import Avatar from '../Avatar/Avatar';
 import {BsCardImage} from "react-icons/bs";
 import { axiosClient } from '../../utils/axiosClient';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from '../../redux/slices/appConfigSlice';
+import { getUserProfile } from '../../redux/slices/postsSlice'; 
+
+
+
 
 function CreatePost() {
   
   const dispatch=useDispatch();
   const [postImg, setPostImg]=useState("");
   const [caption, setCaption]=useState("");
+  const myProfile=useSelector(state=>state.appConfigReducer.myProfile);
   
 
   function handleImageChange(event){
@@ -26,18 +31,16 @@ function CreatePost() {
   
   const handlePostSubmit=async ()=>{
     try{
-    dispatch(setLoading(true));
-    const result=await axiosClient.post("/posts", {
+    const response=await axiosClient.post("/post", {
         caption,
         postImg
     })
+    dispatch(getUserProfile({
+      userId: myProfile?._id
+    }));
   }
-catch(error){
 
-
-}
 finally{
- dispatch(setLoading(false));
  setCaption("");
  setPostImg("");
 }
@@ -47,7 +50,7 @@ finally{
     <div className='CreatePost'>
 
     <div className="left-part">
-        <Avatar />
+        <Avatar src={myProfile?.avatar?.url} />
     </div>
     <div className="right-part">
         <input 
