@@ -1,17 +1,17 @@
-const success=(statusCode, result)=>{
-    return {
-        status:"Ok",
-        statusCode,
-        result
-    }
-}
+const success = (statusCode, result) => {
+  return {
+    status: "Ok",
+    statusCode,
+    result,
+  };
+};
 
-const error=(statusCode, message)=>{
-    return {
-        status:"Error",
-        statusCode,
-        message
-    }
-}
+const error = (statusCode, message) => {
+  return {
+    status: "Error",
+    statusCode,
+    message,
+  };
+};
 
-module.exports={success, error}
+module.exports = { success, error };

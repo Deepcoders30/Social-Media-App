@@ -1,27 +1,27 @@
-.Navbar{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: white;
-    height: 60px;
-    border-bottom: 1px solid var(--border-color);
-    .container{
-        height: 100%;
-        max-width: 960px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-inline: auto;   
-    }
-    .right-side{
-        display: flex;
-        gap: 20px;
-        align-items: center;
-    }
-    .logout{
-        font-size: 1.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.Navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  height: 60px;
+  border-bottom: 1px solid var(--border-color);
+  .container {
+    height: 100%;
+    max-width: 960px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline: auto;
+  }
+  .right-side {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .logout {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

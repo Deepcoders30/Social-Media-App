@@ -1,49 +1,48 @@
-.Signup{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    .heading{
-        text-align: center;
-    }
+.Signup {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    .signup-box{
-        border: 1px solid black;
-        padding: 40px;
-        min-width: 400px;
-        border-radius: 4px;
-    }
+  .heading {
+    text-align: center;
+  }
 
-    label,input{
-        display: block;
-        width: 100%;
-        margin-block: 8px;
-    }
+  .signup-box {
+    border: 1px solid black;
+    padding: 40px;
+    min-width: 400px;
+    border-radius: 4px;
+  }
 
-    label{
-        font-weight: bold;
-    }
+  label,
+  input {
+    display: block;
+    width: 100%;
+    margin-block: 8px;
+  }
 
-    input{
-        padding: 8px 16px;
-        border-radius: 4px;
-    }
+  label {
+    font-weight: bold;
+  }
 
-    .submit{
-        background-color: #29b4ff;
-        color: white;
-        border: none;
-        margin-top: 16px;
-    }
+  input {
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
 
-    .submit:hover{
-         background-color: #249dde;
-    }
-    
-    p{
-        text-align: center;
-    }
-   
+  .submit {
+    background-color: #29b4ff;
+    color: white;
+    border: none;
+    margin-top: 16px;
+  }
+
+  .submit:hover {
+    background-color: #249dde;
+  }
+
+  p {
+    text-align: center;
+  }
 }
-

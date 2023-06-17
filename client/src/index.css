@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,32 +6,38 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 :root {
   --border-color: #ddd;
-  --accent-color: #458eff; 
+  --accent-color: #458eff;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #212121;
 }
 
-h3, h6{
+h3,
+h6 {
   font-weight: 400;
 }
 
-p{
+p {
   color: #555;
   font-size: 0.9rem;
 }
@@ -40,16 +46,16 @@ p{
   cursor: pointer;
 }
 
-.hover-link:active{
+.hover-link:active {
   color: red;
 }
 
-.container{
+.container {
   max-width: 960px;
-  margin-inline: auto;   
+  margin-inline: auto;
 }
 
-.btn-primary{
+.btn-primary {
   background-color: var(--accent-color);
   color: white;
   font-weight: bold;
@@ -59,15 +65,15 @@ p{
   cursor: pointer;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
   background-color: #5f9fff;
 }
 
-.btn-primary:active{
+.btn-primary:active {
   background-color: var(--accent-color);
 }
 
-.btn-secondary{
+.btn-secondary {
   border: 2px solid var(--accent-color);
   color: var(--accent-color);
   font-weight: bold;
@@ -77,10 +83,10 @@ p{
   cursor: pointer;
 }
 
-.btn-secondary:hover{
+.btn-secondary:hover {
   background-color: #ddd;
 }
 
-.btn-secondary:active{
+.btn-secondary:active {
   background: none;
 }
