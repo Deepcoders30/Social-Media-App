@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: "https://social-media-app-flame-iota.vercel.app/",
+    origin: "https://social-media-app-flame-iota.vercel.app",
   })
 );
 
