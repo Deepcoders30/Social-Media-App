@@ -34,7 +34,7 @@ const createPostController = async (req, res) => {
 
     return res.send(success(201, { post }));
   } catch (e) {
-    res.send(error(500, e.message));
+    return res.send(error(500, e.message));
   }
 };
 
@@ -56,11 +56,10 @@ const likeAndunlikePost = async (req, res) => {
       post.Likes.push(currentUserId);
     }
     await post.save();
-    console.log({ post: mapPostOutput(post, req._id) });
 
     return res.send(success(200, { post: mapPostOutput(post, req._id) }));
   } catch (e) {
-    res.send(error(500, e.message));
+    return res.send(error(500, e.message));
   }
 };
 
@@ -115,7 +114,7 @@ const deletePost = async (req, res) => {
 
     return res.send(success(200, "post Deleted Successfully"));
   } catch (e) {
-    res.send(error(500, e.message));
+    return res.send(error(500, e.message));
   }
 };
 

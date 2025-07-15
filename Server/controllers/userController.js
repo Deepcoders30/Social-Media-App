@@ -75,19 +75,19 @@ const getPostsOfFollowing = async (req, res) => {
   }
 };
 
-const getMyPosts = async (req, res) => {
-  try {
-    const currentUserId = req._id;
+  const getMyPosts = async (req, res) => {
+    try {
+      const currentUserId = req._id;
 
-    const allUserPosts = await Post.find({
-      owner: currentUserId,
-    }).populate("Likes");
+      const allUserPosts = await Post.find({
+        owner: currentUserId,
+      }).populate("Likes");
 
-    res.send(success(200, { allUserPosts }));
-  } catch (e) {
-    res.send(error(500, e.message));
-  }
-};
+      res.send(success(200, { allUserPosts }));
+    } catch (e) {
+      res.send(error(500, e.message));
+    }
+  };
 
 const getUserPosts = async (req, res) => {
   try {

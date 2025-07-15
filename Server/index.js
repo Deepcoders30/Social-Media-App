@@ -5,7 +5,7 @@ const DBconnect = require("./DBconnect.js");
 const authRouter = require("./routers/authRouter.js");
 const postsRouter = require("./routers/postsRouter.js");
 const userRouter = require("./routers/userRouter.js");
-const morgon = require("morgan");
+const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const cloudinary = require("cloudinary").v2;
@@ -21,7 +21,7 @@ const app = express();
 
 //Middlewares
 app.use(express.json({ limit: "10mb" }));
-app.use(morgon("common"));
+app.use(morgan("common"));
 app.use(cookieParser());
 app.use(
   cors({
